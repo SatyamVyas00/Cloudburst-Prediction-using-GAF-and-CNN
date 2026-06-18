@@ -1,43 +1,58 @@
-# Paper-Title: A System based on CNN and GAF for Forecasting Cloudburst Events in Uttarakhand, India
+# Precision Forecasting of Cloudbursts with CNNs and GAF for Real-Time Disaster Response
 
-This repository contains data and code for the research paper **"Integration of CNN and GAF for Monitoring/Predicting Cloudburst Events in Uttarakhand, India"**. The aim of this research is to develop an accurate and efficient method for monitoring and predicting cloudburst events in Uttarakhand, India using a combination of Convolutional Neural Network (CNN) and Gramian Angular Field (GAF).
+> **Published:** Layek, S., Bhushan, M., Mall, S., Vyas, S., Singh, U., & Khaire, U. M. (2026). Precision forecasting of cloudbursts with CNNs and GAF for real-time disaster response. *Modeling Earth Systems and Environment*, 12, 184.
+> DOI: [10.1007/s40808-026-02826-4](https://doi.org/10.1007/s40808-026-02826-4)
 
-<a href="https://ibb.co/8MxbtrJ"><img src="https://i.ibb.co/F6YXC59/jb-4.png" alt="jb-4" border="0"></a>
+## Overview
 
-The uploaded data includes several files that are used for model training, testing, and validation. The files and their descriptions are as follows:
+This repository contains code and data for a cloudburst forecasting framework for the Himalayan region of Uttarakhand, India. The model integrates Convolutional Neural Networks (CNN) with Gramian Angular Field (GAF) encoding to convert multivariate meteorological time-series into 2D visual representations, enabling spatial feature extraction for accurate early warnings. Data is sourced from the Indian Meteorological Department (IMD).
 
-**Training.ipynb**: This file contains the code used for model training.
+**Results:**
+- 6-hour lead prediction — AUC: **97.73%**
+- 12-hour lead prediction — AUC: **98.41%**
 
-**Testing.ipynb**: This file contains the code used for model evaluation.
+## Repository Structure
 
-**API.ipynb**: This file contains the code for an API that can be used for continuous monitoring and predicting cloudburst on the latest data retrieved from IMD using a pre-trained model.
+| File | Description |
+|------|-------------|
+| `Training.ipynb` | Model training |
+| `Testing.ipynb` | Model evaluation |
+| `API.ipynb` | Continuous monitoring using pre-trained model |
+| `CB6.npy` | Cloudburst training-testing data (6-hour prediction) |
+| `CB12.npy` | Cloudburst training-testing data (12-hour prediction) |
+| `NB.npy` | Non-cloudburst training-testing data |
+| `TEST6.npy` | Cloudburst validation data (6-hour prediction) |
+| `TEST12.npy` | Cloudburst validation data (12-hour prediction) |
+| `Model6.h5` | Pre-trained 6-hour prediction model |
+| `Model12.h5` | Pre-trained 12-hour prediction model |
 
-**CB12.npy**: This file contains Cloudburst Training-Testing Data for 12-Hour Early Prediction.
+## Model Configuration
 
-**CB6.npy**: This file contains Cloudburst Training-Testing Data for 6-Hour Early Prediction.
+| Parameter | 6H Model | 12H Model |
+|-----------|----------|-----------|
+| Optimizer | Adam | RMSprop |
+| Kernel Size | 2×2 | 1×1 |
+| Pooling Size | 3×3 | 3×3 |
+| Learning Rate | 0.0005 | 0.0005 |
+| Epochs | 50 | 50 |
 
-**Model12.h5**: This file contains the pre-trained 12-Hour Early Prediction model.
+## Authors
 
-**Model6.h5**: This file contains the pre-trained 6-Hour Early Prediction model.
+Shirshendu Layek · Megha Bhushan · Shrey Mall · **Satyam Vyas** · Ugarsain Singh · Utkarsh Mahadeo Khaire
 
-| Model-Feature  | 6H Value | 12H Value |
-| ------------- | ------------- | ------------- |
-| Optimizer | Adam | rmsprop  |
-| Kernel Size  | 2,2  | 1,1  |
-| Pooling Size  | 3,3  | 3,3  |
-| Learning rate | 0.0005  | 0.0005  |
-| Epoch | 50  | 50  |
+## Citation
 
-**NB.npy**: This file contains Non-Cloudburst Training-Testing data.
+```bibtex
+@article{layek2026precision,
+  title={Precision forecasting of cloudbursts with CNNs and GAF for real-time disaster response},
+  author={Layek, Shirshendu and Bhushan, Megha and Mall, Shrey and Vyas, Satyam and Singh, Ugarsain and Khaire, Utkarsh Mahadeo},
+  journal={Modeling Earth Systems and Environment},
+  volume={12},
+  pages={184},
+  year={2026},
+  publisher={Springer Nature},
+  doi={10.1007/s40808-026-02826-4}
+}
+```
 
-**TEST12.npy**: This file contains Cloudburst Validation Data for 12-Hour Early Prediction.
-
-**TEST6.npy**: This file contains Cloudburst Validation Data for 6-Hour Early Prediction.
-
-These files can be used to reproduce the results reported in the research paper. The code is written in Python and uses popular libraries such as TensorFlow and Keras. The repository can be easily cloned and the code can be run on any machine with the required dependencies installed.
-
-We hope that this research will contribute to the development of more accurate and efficient methods for monitoring and predicting cloudburst events, which can help to mitigate the impact of these natural disasters on the communities in Uttarakhand, India.
-
-**Note:- 
-Since, The code shuffles data before spliting. The results may vary for newly trained models.
-The 3rd event in the testing dataset (TEST6 and TEST12) is a repeated event from the training-testing dataset. so, please ignore it.**
+> **Note:** Since the code shuffles data before splitting, results may vary for newly trained models. The 3rd event in the testing dataset (TEST6 and TEST12) is a repeated event from the training-testing dataset — please ignore it.
